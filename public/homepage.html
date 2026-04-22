@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yukina | Standalone Homepage</title>
+    <meta
+      name="description"
+      content="Standalone HTML preview of the Yukina homepage using the Tailwind CDN."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=noto-sans-sc:100,200,300,400,500,600,700,800,900|raleway:500,700"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              brand: ['Raleway', '"Noto Sans SC"', "sans-serif"],
+              sans: ['"Noto Sans SC"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --hue: 300;
+        --primary-color: oklch(70% 0.15 var(--hue));
+        --primary-color-lighten: oklch(95% 0.02 var(--hue));
+        --primary-color-hover: oklch(90% 0.025 var(--hue));
+        --text-color: oklch(30% 0 0);
+        --text-color-lighten: oklch(50% 0 0);
+        --card-color: oklch(100% 0 0 / 0.92);
+        --card-color-transparent: oklch(100% 0 0 / 0.8);
+        --background-color: oklch(97% 0.01 var(--hue));
+      }
+
+      .dark {
+        --primary-color: oklch(70% 0.125 var(--hue));
+        --primary-color-lighten: oklch(40% 0.04 var(--hue));
+        --primary-color-hover: oklch(20% 0.015 var(--hue));
+        --text-color: oklch(95% 0.002 var(--hue));
+        --text-color-lighten: oklch(90% 0.002 var(--hue));
+        --card-color: oklch(25% 0.02 var(--hue) / 0.92);
+        --card-color-transparent: oklch(30% 0.025 var(--hue) / 0.8);
+        --background-color: oklch(17.5% 0.015 var(--hue));
+      }
+
+      body {
+        background: var(--background-color);
+        color: var(--text-color);
+      }
+
+      .hero-slide {
+        animation: hero-fade 24s linear infinite;
+      }
+
+      .hero-slide:nth-child(2) {
+        animation-delay: 8s;
+      }
+
+      .hero-slide:nth-child(3) {
+        animation-delay: 16s;
+      }
+
+      @keyframes hero-fade {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(1.08);
+        }
+        8%,
+        30% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        38% {
+          opacity: 0;
+        }
+      }
+
+      .wave use {
+        animation: wave 25s cubic-bezier(0.5, 0.5, 0.45, 0.5) infinite;
+      }
+
+      @keyframes wave {
+        0% {
+          transform: translate3d(-90px, 0, 0);
+        }
+        100% {
+          transform: translate3d(85px, 0, 0);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans">
+    <nav
+      class="fixed left-1/2 top-0 z-50 flex w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 items-center justify-between rounded-b-2xl border border-white/10 bg-[var(--card-color-transparent)] px-4 py-3 shadow-lg shadow-black/5 backdrop-blur-md"
+    >
+      <button
+        id="menu-toggle"
+        class="flex h-11 w-11 items-center justify-center rounded-xl transition hover:bg-[var(--primary-color-hover)] lg:hidden"
+        aria-label="Toggle menu"
+      >
+        ☰
+      </button>
+      <a
+        href="./homepage.html"
+        class="font-brand text-2xl font-bold text-[var(--primary-color)]"
+      >
+        Yukina
+      </a>
+      <div class="hidden items-center gap-2 lg:flex">
+        <a class="rounded-xl px-4 py-2 font-medium transition hover:bg-[var(--primary-color-hover)] hover:text-[var(--primary-color)]" href="./homepage.html">Home</a>
+        <a class="rounded-xl px-4 py-2 font-medium transition hover:bg-[var(--primary-color-hover)] hover:text-[var(--primary-color)]" href="./homepage.html#posts">Archive</a>
+        <a class="rounded-xl px-4 py-2 font-medium transition hover:bg-[var(--primary-color-hover)] hover:text-[var(--primary-color)]" href="./homepage.html#about">About</a>
+        <a class="rounded-xl px-4 py-2 font-medium transition hover:bg-[var(--primary-color-hover)] hover:text-[var(--primary-color)]" href="https://github.com/WhitePaper233/yukina" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="hidden lg:block">
+          <label class="flex items-center gap-2 rounded-xl border border-black/5 bg-white/50 px-3 py-2 text-sm dark:border-white/10 dark:bg-white/5">
+            <span class="text-[var(--text-color-lighten)]">⌕</span>
+            <input
+              type="text"
+              placeholder="Search"
+              class="w-36 bg-transparent outline-none placeholder:text-[var(--text-color-lighten)]"
+            />
+          </label>
+        </div>
+        <button
+          id="theme-toggle"
+          class="flex h-11 w-11 items-center justify-center rounded-xl transition hover:bg-[var(--primary-color-hover)]"
+          aria-label="Toggle theme"
+        >
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      id="mobile-menu"
+      class="fixed left-1/2 top-[4.75rem] z-40 hidden w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 rounded-2xl border border-white/10 bg-[var(--card-color-transparent)] p-4 shadow-lg shadow-black/5 backdrop-blur-md lg:hidden"
+    >
+      <div class="flex flex-col gap-2">
+        <a class="rounded-xl px-4 py-3 font-medium transition hover:bg-[var(--primary-color-hover)] hover:text-[var(--primary-color)]" href="./homepage.html">Home</a>
+        <a class="rounded-xl px-4 py-3 font-medium transition hover:bg-[var(--primary-color-hover)] hover:text-[var(--primary-color)]" href="./homepage.html#posts">Archive</a>
+        <a class="rounded-xl px-4 py-3 font-medium transition hover:bg-[var(--primary-color-hover)] hover:text-[var(--primary-color)]" href="./homepage.html#about">About</a>
+        <a class="rounded-xl px-4 py-3 font-medium transition hover:bg-[var(--primary-color-hover)] hover:text-[var(--primary-color)]" href="https://github.com/WhitePaper233/yukina" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+
+    <header class="relative h-[70vh] min-h-[34rem] overflow-hidden">
+      <div class="absolute inset-0">
+        <div
+          class="hero-slide absolute inset-0 bg-cover bg-center"
+          style="background-image: linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,.4)), url('https://s2.loli.net/2025/01/25/PBvHFjr5yDu6t4a.webp');"
+        ></div>
+        <div
+          class="hero-slide absolute inset-0 bg-cover bg-center opacity-0"
+          style="background-image: linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,.4)), url('https://s2.loli.net/2025/01/25/6bKcwHZigzlM4mJ.webp');"
+        ></div>
+        <div
+          class="hero-slide absolute inset-0 bg-cover bg-center opacity-0"
+          style="background-image: linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,.4)), url('https://s2.loli.net/2025/01/25/H9WgEK6qNTcpFiS.webp');"
+        ></div>
+      </div>
+
+      <div class="relative z-10 flex h-full items-center justify-center px-6 text-center">
+        <div class="max-w-4xl">
+          <h1 class="font-brand text-5xl font-bold tracking-tight text-white drop-shadow-lg md:text-7xl">
+            Yukina
+          </h1>
+          <p class="mt-4 font-brand text-xl text-white/90 drop-shadow md:text-3xl">
+            Yukina Template Demo Site
+          </p>
+        </div>
+      </div>
+
+      <div class="absolute inset-x-0 bottom-0 z-10">
+        <svg
+          class="h-20 w-full md:h-28"
+          viewBox="0 24 150 28"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <path
+              id="standalone-wave"
+              d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z"
+            ></path>
+          </defs>
+          <g class="wave fill-[var(--background-color)]">
+            <use href="#standalone-wave" x="48" y="0" class="opacity-25" style="animation-delay:-2s;animation-duration:7s"></use>
+            <use href="#standalone-wave" x="48" y="3" class="opacity-50" style="animation-delay:-3s;animation-duration:10s"></use>
+            <use href="#standalone-wave" x="48" y="5" class="opacity-75" style="animation-delay:-4s;animation-duration:13s"></use>
+            <use href="#standalone-wave" x="48" y="7" style="animation-delay:-5s;animation-duration:20s"></use>
+          </g>
+        </svg>
+      </div>
+    </header>
+
+    <main class="mx-auto -mt-2 w-full max-w-6xl px-4 pb-12 pt-10">
+      <div class="grid gap-8 xl:grid-cols-[280px_minmax(0,1fr)]">
+        <aside class="space-y-4 xl:sticky xl:top-28 xl:self-start" id="about">
+          <section class="rounded-[1.75rem] bg-[var(--card-color)] p-5 shadow-sm shadow-black/5">
+            <div class="flex items-center gap-4 xl:flex-col xl:text-center">
+              <img
+                src="https://s2.loli.net/2025/01/25/FPpTrQSezM8ivbl.webp"
+                alt="WhitePaper avatar"
+                class="h-24 w-24 rounded-[1.5rem] object-cover xl:h-32 xl:w-32"
+              />
+              <div>
+                <h2 class="text-xl font-semibold">WhitePaper 白芷</h2>
+                <div class="mx-auto mt-2 h-1 w-10 rounded-full bg-[var(--primary-color)]"></div>
+                <p class="mt-3 text-sm text-[var(--text-color-lighten)]">
+                  Ad Astra Per Aspera.
+                </p>
+              </div>
+            </div>
+            <div class="mt-5 flex gap-3 xl:justify-center">
+              <a class="rounded-xl bg-[var(--primary-color-lighten)] px-3 py-2 text-sm font-medium text-[var(--primary-color)] transition hover:brightness-95" href="https://github.com/WhitePaper233" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="rounded-xl bg-[var(--primary-color-lighten)] px-3 py-2 text-sm font-medium text-[var(--primary-color)] transition hover:brightness-95" href="https://space.bilibili.com/22433608" target="_blank" rel="noreferrer">Bilibili</a>
+              <a class="rounded-xl bg-[var(--primary-color-lighten)] px-3 py-2 text-sm font-medium text-[var(--primary-color)] transition hover:brightness-95" href="https://music.163.com/#/user/home?id=125291648" target="_blank" rel="noreferrer">Music</a>
+            </div>
+          </section>
+
+          <section class="rounded-[1.75rem] bg-[var(--card-color)] p-5 shadow-sm shadow-black/5">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-6 w-1 rounded-full bg-[var(--primary-color)]"></span>
+              <h3 class="text-lg font-semibold">Categories</h3>
+            </div>
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-1">
+              <a class="flex items-center justify-between rounded-xl px-3 py-2 transition hover:bg-[var(--primary-color-lighten)]" href="./homepage.html#posts">
+                <span>Examples</span>
+                <span class="rounded-lg bg-[var(--primary-color-lighten)] px-2 py-1 text-sm text-[var(--primary-color)]">3</span>
+              </a>
+            </div>
+          </section>
+
+          <section class="rounded-[1.75rem] bg-[var(--card-color)] p-5 shadow-sm shadow-black/5">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="h-6 w-1 rounded-full bg-[var(--primary-color)]"></span>
+              <h3 class="text-lg font-semibold">Tags</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Markdown</span>
+              <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Blogging</span>
+              <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Example</span>
+              <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Video</span>
+            </div>
+          </section>
+        </aside>
+
+        <section class="space-y-6" id="posts">
+          <article class="overflow-hidden rounded-[1.75rem] bg-[var(--card-color)] shadow-sm shadow-black/5 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem]">
+            <div class="p-6 lg:p-8">
+              <div class="mb-4 flex flex-wrap items-center gap-3 text-sm text-[var(--text-color-lighten)]">
+                <span>📅 2025-01-20</span>
+                <span>🏷️ Examples</span>
+                <span>⏱️ 5 Minutes</span>
+              </div>
+              <h2 class="text-2xl font-semibold transition hover:text-[var(--primary-color)]">
+                <a href="./homepage.html">Markdown Tutorial</a>
+              </h2>
+              <p class="mt-3 text-[var(--text-color-lighten)]">
+                A simple example of a Markdown blog post.
+              </p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Markdown</span>
+                <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Blogging</span>
+              </div>
+              <div class="mt-6 text-sm text-[var(--text-color-lighten)]">726 Words | 5 Minutes</div>
+            </div>
+            <img
+              src="https://s2.loli.net/2025/01/25/tozsJ8QHAjFN3Mm.webp"
+              alt="Markdown tutorial cover"
+              class="h-64 w-full object-cover lg:h-full"
+            />
+          </article>
+
+          <article class="overflow-hidden rounded-[1.75rem] bg-[var(--card-color)] shadow-sm shadow-black/5 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem]">
+            <div class="p-6 lg:p-8">
+              <div class="mb-4 flex flex-wrap items-center gap-3 text-sm text-[var(--text-color-lighten)]">
+                <span>📅 2023-10-01</span>
+                <span>🏷️ Examples</span>
+                <span>⏱️ 3 Minutes</span>
+              </div>
+              <h2 class="text-2xl font-semibold transition hover:text-[var(--primary-color)]">
+                <a href="./homepage.html">Markdown Example</a>
+              </h2>
+              <p class="mt-3 text-[var(--text-color-lighten)]">
+                A simple example of a Markdown blog post.
+              </p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Markdown</span>
+                <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Blogging</span>
+              </div>
+              <div class="mt-6 text-sm text-[var(--text-color-lighten)]">463 Words | 3 Minutes</div>
+            </div>
+            <img
+              src="https://s2.loli.net/2025/01/25/Pm89OveZq7NWUxF.webp"
+              alt="Markdown example cover"
+              class="h-64 w-full object-cover lg:h-full"
+            />
+          </article>
+
+          <article class="overflow-hidden rounded-[1.75rem] bg-[var(--card-color)] shadow-sm shadow-black/5 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem]">
+            <div class="p-6 lg:p-8">
+              <div class="mb-4 flex flex-wrap items-center gap-3 text-sm text-[var(--text-color-lighten)]">
+                <span>📅 2022-08-01</span>
+                <span>🏷️ Examples</span>
+                <span>⏱️ 2 Minutes</span>
+              </div>
+              <h2 class="text-2xl font-semibold transition hover:text-[var(--primary-color)]">
+                <a href="./homepage.html">Include Video in the Posts</a>
+              </h2>
+              <p class="mt-3 text-[var(--text-color-lighten)]">
+                This post demonstrates how to include embedded video in a blog post.
+              </p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Example</span>
+                <span class="rounded-lg bg-[var(--primary-color-lighten)] px-3 py-1 text-sm text-[var(--primary-color)]">Video</span>
+              </div>
+              <div class="mt-6 text-sm text-[var(--text-color-lighten)]">278 Words | 2 Minutes</div>
+            </div>
+            <img
+              src="https://s2.loli.net/2025/01/25/UCYKvc1ZhgPHB9m.webp"
+              alt="Video post cover"
+              class="h-64 w-full object-cover lg:h-full"
+            />
+          </article>
+
+          <div class="flex items-center justify-center gap-3 pt-2">
+            <a class="rounded-xl border border-black/10 px-4 py-2 text-sm transition hover:bg-[var(--primary-color-hover)] dark:border-white/10" href="./homepage.html">← Previous</a>
+            <span class="rounded-xl bg-[var(--primary-color-lighten)] px-4 py-2 text-sm font-medium text-[var(--primary-color)]">1</span>
+            <a class="rounded-xl border border-black/10 px-4 py-2 text-sm transition hover:bg-[var(--primary-color-hover)] dark:border-white/10" href="./homepage.html">Next →</a>
+          </div>
+
+          <footer class="rounded-[1.75rem] bg-[var(--card-color)] px-6 py-8 text-center text-sm text-[var(--text-color-lighten)] shadow-sm shadow-black/5">
+            <p>© 2026 WhitePaper 白芷 All Rights Reserved.</p>
+            <p class="mt-2">
+              Powered by
+              <a class="text-[var(--primary-color)] hover:brightness-110" href="https://github.com/WhitePaper233/yukina" target="_blank" rel="noreferrer">Yukina</a>
+              &
+              <a class="text-[var(--primary-color)] hover:brightness-110" href="https://tailwindcss.com/" target="_blank" rel="noreferrer">Tailwind CDN</a>
+            </p>
+          </footer>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = document.getElementById("theme-icon");
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      const setTheme = (theme) => {
+        root.classList.toggle("dark", theme === "dark");
+        localStorage.setItem("standalone-theme", theme);
+        themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
+      };
+
+      setTheme(localStorage.getItem("standalone-theme") || "light");
+
+      themeToggle.addEventListener("click", () => {
+        setTheme(root.classList.contains("dark") ? "light" : "dark");
+      });
+
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+      });
+    </script>
+  </body>
+</html>
